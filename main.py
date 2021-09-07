@@ -7,8 +7,28 @@ animal_dic = {}
 
 
 # ~~~~~~~~~~~~~~~~~~ Functions(): ~~~~~~~~~~~~~~~~~~~
+def main():
+    # ~~~~~~~~~~~~~~ User's choise ~~~~~~~~~~~~~~~
+    while True:
+        instrucctions()
+        user_input = input("\nWhat do you want to do? "
+                           "(a, d, u, l, e): ").lower()
+        if user_input == "a":
+            add_animal()
+        elif user_input == "d":
+            delete_animal()
+        elif user_input == "u":
+            update_animal()
+        elif user_input == "l":
+            print_register()
+        elif user_input == "e":
+            exit_program()
+        elif not user_input:
+            print("please, enter something!")
+
+
 def instrucctions():
-    print('\nAnimal register program:'
+    print('\nAnimal registry program:'
           '\n1: Enter A or a to add new animal.'
           '\n2: Enter D or d to delete a animal'
           '\n3: Enter U or u to update animal.'
@@ -22,7 +42,7 @@ def print_register():
         x.add_row([animal_data, animal_dic[animal_data]["scientific_name"],
                    animal_dic[animal_data]["common_name"]])
 
-    print(x.get_string(title="Animal Register"))
+    print(x.get_string(title="Animal Registry"))
 
 
 def random_id():
@@ -51,7 +71,7 @@ def delete_animal():
             del animal_dic[animal_id]
             print(f"{animal_id} register has been deleted!")
     else:
-        print("ID not found. Check list pressing 'L'")
+        print("\n>ID not found. Check list pressing 'L'")
 
 
 def update_animal():
@@ -62,7 +82,8 @@ def update_animal():
             choice = input(f"Update register {animal_id}? (y/n): ").lower()
             if choice == "yes" or choice == "y":
                 # Changing names
-                scientific_name = input("Write a new scientific name: ").title()
+                scientific_name = input("Write a new"
+                                        "scientific name: ").title()
                 common_name = input("Write a new common name: ").title()
                 if not scientific_name and not common_name:
                     print("You must write something!")
@@ -72,26 +93,12 @@ def update_animal():
                     print("Register updated!")
                     print_register()
         else:
-            print("ID not found. Check list pressing 'L'")
+            print("\n>ID not found. Check list pressing 'L'")
 
 
 def exit_program():
     sys.exit("Goodbye!")
 
 
-# ~~~~~~~~~~~~~~ User's choise ~~~~~~~~~~~~~~~
-while True:
-    instrucctions()
-    user_input = input("\nwhat do you want to do? (a, d, u, e, l): ").lower()
-    if user_input == "a":
-        add_animal()
-    elif user_input == "d":
-        delete_animal()
-    elif user_input == "u":
-        update_animal()
-    elif user_input == "e":
-        exit_program()
-    elif user_input == "l":
-        print_register()
-    elif not user_input:
-        print("please, enter something!")
+if __name__ == "__main__":
+    main()
